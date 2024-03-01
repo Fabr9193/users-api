@@ -1,10 +1,18 @@
 import express from 'express';
-import userRoutes from './src/controllers/users';
-
+import usersRoute from './src/infrastructure/controllers/users';
 const app = express();
 
-// Middleware to parse JSON bodies
-app.use(express.json());
+const port = process.env.PORT || 3000;
 
-// User routes
-app.use('/users', userRoutes);
+app.use('/users', usersRoute);
+app.get('/', (req, res) => {
+    res.send('Hello World!');
+    }
+);
+
+app.listen(port, () => {
+    console.log('Server is running on port ' + port);
+    }
+);
+
+export default app;
