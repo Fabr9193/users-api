@@ -27,11 +27,7 @@ module.exports = {
       },
       password: {
         type: Sequelize.STRING,
-        allowNull: false,
-        set(value) {
-          const hashedPassword = bcrypt.hashSync(value, 10);
-          this.setDataValue('password', hashedPassword);
-        }
+        allowNull: false
       }
     });
   },

@@ -1,7 +1,6 @@
 import { User } from "../../src/domain/user";
 
-export const userMock : User= {
-    id: '1',
+export const userMock = {
     email: 'test@test.com',
     password: 123,
     firstName: 'user',

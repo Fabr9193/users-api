@@ -1,11 +1,13 @@
 export interface User {
     id: string;
     email: string;
-    password: number;
+    password: string;
     firstName: string;
     lastName: string;
 }
 
 export interface UserRepository {
-    create(user: User): Promise<User>;
+    register(user: User): Promise<User>;
+    findAll(): Promise<User[]>;
+    fetchById(id: string): Promise<User | null> ;
 }
