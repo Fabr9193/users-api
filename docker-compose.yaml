@@ -1,0 +1,25 @@
+version: '3'
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 3000:3000
+    depends_on:
+      - db
+    environment:
+      - DB_HOST=${DB_HOST}
+      - DB_PORT=${DB_PORT}
+  db:
+    image: mysql:latest
+    environment:
+      - MYSQL_DATABASE=users
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=adminroot
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+    ports:
+      - 3306:3306
+    volumes:
+      - ./data:/var/lib/mysql
+      
