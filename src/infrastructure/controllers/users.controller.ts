@@ -33,6 +33,16 @@ usersRoutes.get('/:id', authService.checkAuthentication ,async (req, res) => {
   }
 });
 
+usersRoutes.put('/:id', authService.checkAuthentication ,async (req, res) => {
+  try {
+    const user = await userRepository.fetchById(req.params.id);
+    const updatedUser = await userRepository.update( req.params.id, req.body);
+    res.status(200).send(updatedUser);
+  } catch (err) {
+    console.log(err);
+    res.status(400).send(err);
+  }
+});
 
 export default usersRoutes;
 

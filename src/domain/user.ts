@@ -11,4 +11,5 @@ export interface UserRepository {
     findAll(): Promise<User[]>;
     fetchById(id: string): Promise<User | null> ;
     findByEmail(email: string): Promise<User | null>;
+    update(userId : string, user: User): Promise<User>;
 }

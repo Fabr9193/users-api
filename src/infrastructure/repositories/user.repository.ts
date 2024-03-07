@@ -36,4 +36,8 @@ export class DatabaseUserRepository implements UserRepository {
         }
         return null;
     }
+    async update(userId : string ,user: User): Promise<User> {
+        const updatedUser = await UserModel.update(user, { where: { id: userId }, returning: true });
+        return updatedUser[1][0].toJSON() as User;
+    }   
 }

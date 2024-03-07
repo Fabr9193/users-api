@@ -60,4 +60,16 @@ describe('user repository', () => {
         // Then
         expect(foundUser).toEqual(user);
     });
+
+    it('should return the user when an update is successful', async () => {
+        // Given
+        const userId = '1';
+        userRepository.update = jest.fn().mockResolvedValue(user);
+
+        // When
+        const updatedUser = await userRepository.update(userId, user);
+
+        // Then
+        expect(updatedUser).toEqual(user);
+    });
 });
