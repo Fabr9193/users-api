@@ -29,8 +29,15 @@ To start the project, follow these steps:
 
 ## Authentication
 
-This project uses a basic authentication
-Once you register, you need to provide your email/password to do an operation
+This project uses token-based authentication. To obtain a token, follow these steps:
+
+1. Register by sending a POST request to the `/register` route with your email and password.
+
+2. Log in by sending a POST request to the `/login` route with your email and password. The response will include an `x-api-key` header containing the token.
+
+3. Include the `x-api-key` token in the headers of subsequent requests to authenticate and authorize your operations.
+
+Note: Make sure to keep your token secure and do not share it with others.
 
 ## Running Tests
 

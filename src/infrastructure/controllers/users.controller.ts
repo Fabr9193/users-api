@@ -1,25 +1,19 @@
 import express from 'express';
 import { DatabaseUserRepository } from '../repositories/user.repository';
-import passport from 'passport';
+import { compareSync } from 'bcrypt';
+import { TokenService } from '../token.service';
+import { AuthService } from '../auth.service';
 
 
-const usersRoute = express.Router();
+const usersRoutes = express.Router();
+const authService = new AuthService();
 
 // Parse JSON bodies (as sent by API clients)
-usersRoute.use(express.json());
+usersRoutes.use(express.json());
+const userRepository = new DatabaseUserRepository();
 
-usersRoute.post('/register', async (req, res) => {
-  const userRepository = new DatabaseUserRepository();
-  try {
-   await userRepository.register(req.body);
-   res.status(201).send('User registered');
-  } catch (err) {
-    res.status(400).send(err);
-  }
-});
 
-usersRoute.get('/', passport.authenticate('local') ,async (req, res) => {
-  const userRepository = new DatabaseUserRepository();
+usersRoutes.get('/', authService.checkAuthentication, async (req, res) => {
   try {
     const users = await userRepository.findAll();
     res.status(200).send(users);
@@ -29,8 +23,7 @@ usersRoute.get('/', passport.authenticate('local') ,async (req, res) => {
   }
 });
 
-usersRoute.get('/:id', passport.authenticate('local'), async (req, res) => {  
-  const userRepository = new DatabaseUserRepository();
+usersRoutes.get('/:id', authService.checkAuthentication ,async (req, res) => {  
   try {
     const user = await userRepository.fetchById(req.params.id);
     res.status(200).send(user);
@@ -39,4 +32,7 @@ usersRoute.get('/:id', passport.authenticate('local'), async (req, res) => {
     res.status(400).send(err);
   }
 });
-export default usersRoute;
+
+
+export default usersRoutes;
+

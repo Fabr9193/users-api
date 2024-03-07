@@ -28,4 +28,12 @@ export class DatabaseUserRepository implements UserRepository {
         }
         return null;
     }
+
+    async findByEmail(email: string): Promise<User | null> {
+        const user = await UserModel.findOne({ where: { email } });
+        if (user) {
+            return user.toJSON() as User;
+        }
+        return null;
+    }
 }

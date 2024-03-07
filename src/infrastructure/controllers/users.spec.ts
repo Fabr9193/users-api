@@ -9,18 +9,6 @@ import { jest } from '@jest/globals';
 jest.mock('../database/models/user.models'); 
 
 describe('users endpoint - integration test', () => {
-    describe('create user' , () => {
-        it('should return 201 and the user', async () => {
-            // Mock the create method of the Sequelize model
-            (UserModel.create as jest.Mock).mockResolvedValue({...userMock, id:"test"}); 
-
-            const response = await request(app)
-                .post('/users')
-                .send({ userMock });
-
-            expect(response.status).toBe(201);
-        });
-    });
     describe('get user by id' , () => {
         it('should return 200 and the user', async () => {
             // Mock the findByPk method of the Sequelize model
