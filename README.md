@@ -39,14 +39,22 @@ This project uses token-based authentication. To obtain a token, follow these st
 
 Note: Make sure to keep your token secure and do not share it with others.
 
+## Environment Variables
+
+This project utilizes environment variables for configuration. Here are the required variables:
+
+- `API_TOKEN`: The apiKey to do the operations
+
+Make sure to set these variables before starting the API server.
+
+There is a  `.env.dist` that has the keys important for this project you can copy it and rename it to `.env`
+
 ## Running Tests
 
 To run the tests for this project, use the following command:
-```
-npm run test
-```
 
-## Next steps
 
-1. Add Docker and Docker-compose
-2. Add end to end tests
+## Documentation
+
+The project includes a `/doc` folder that contains the Postman configuration. You can import this configuration into Postman to easily test the API endpoints and explore the available requests. Here's the [process to import in Postman](https://learning.postman.com/docs/getting-started/importing-and-exporting/importing-and-exporting-overview/) 
+
