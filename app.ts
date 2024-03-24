@@ -10,6 +10,9 @@ const port = process.env.PORT || 3000;
 
 app.use('/users', usersRoutes);
 app.use('/auth', authRoutes);
+app.get('/', (req, res) => {
+    res.send('Hello, world!');
+});
 
 
 app.listen(port, () => {

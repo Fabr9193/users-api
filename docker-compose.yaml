@@ -11,15 +11,14 @@ services:
     environment:
       - DB_HOST=${DB_HOST}
       - DB_PORT=${DB_PORT}
+    volumes:  # Add this section
+      - .:/src  # Map the current directory to /app in the container
   db:
     image: mysql:latest
     environment:
       - MYSQL_DATABASE=users
-      - MYSQL_USER=root
-      - MYSQL_PASSWORD=adminroot
       - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
     ports:
       - 3306:3306
     volumes:
       - ./data:/var/lib/mysql
-      
